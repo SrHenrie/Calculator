@@ -150,24 +150,28 @@
     [buttonDivide setTitle:@"/" forState:UIControlStateNormal];
     [buttonDivide setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [buttonDivide setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [buttonDivide addTarget:self action:@selector(operate:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttonDivide];
     
     UIButton *buttonMultiply = [UIButton new];
     [buttonMultiply setTitle:@"*" forState:UIControlStateNormal];
     [buttonMultiply setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [buttonMultiply setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [buttonMultiply addTarget:self action:@selector(operate:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttonMultiply];
     
     UIButton *buttonSubtract = [UIButton new];
     [buttonSubtract setTitle:@"-" forState:UIControlStateNormal];
     [buttonSubtract setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [buttonSubtract setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [buttonSubtract addTarget:self action:@selector(operate:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttonSubtract];
     
     UIButton *buttonAdd = [UIButton new];
     [buttonAdd setTitle:@"+" forState:UIControlStateNormal];
     [buttonAdd setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [buttonAdd setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [buttonAdd addTarget:self action:@selector(operate:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttonAdd];
     
     NSDictionary *buttonsDictionary = NSDictionaryOfVariableBindings(button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonAdd, buttonDivide, buttonMultiply, buttonSubtract, buttonEnter);
@@ -259,6 +263,37 @@
     NSNumber *number = [NSNumber numberWithDouble:self.displayValue];
     [self.operandStack addObject:number];
     NSLog(@"%@", self.operandStack);
+}
+
+- (NSNumber *)popOperandStack {
+    NSNumber *lastNumber = [self.operandStack lastObject];
+    [self.operandStack removeLastObject];
+    return lastNumber;
+}
+
+- (void)operate:(UIButton *)button {
+    
+    
+    if (self.operandStack.count >= 2) {
+        NSNumber *number1 = [self popOperandStack];
+        NSNumber *number2 = [self popOperandStack];
+        
+        NSString *operation = button.titleLabel.text;
+        
+        if ([operation isEqualToString:@"/"]) {
+            self.displayValue = [number2 doubleValue] / [number1 doubleValue];
+        } else if ([operation isEqualToString:@"*"]) {
+            self.displayValue = [number2 doubleValue] * [number1 doubleValue];
+        } else if ([operation isEqualToString:@"-"]) {
+            self.displayValue = [number2 doubleValue] - [number1 doubleValue];
+        } else if ([operation isEqualToString:@"+"]) {
+            self.displayValue = [number2 doubleValue] + [number1 doubleValue];
+        }
+        
+        [self enter];
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
