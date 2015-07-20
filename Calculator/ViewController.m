@@ -273,6 +273,9 @@
 
 - (void)operate:(UIButton *)button {
     
+    if (self.isInTheMiddleOfTypingANumber) {
+        [self enter];
+    }
     
     if (self.operandStack.count >= 2) {
         NSNumber *number1 = [self popOperandStack];
@@ -292,8 +295,6 @@
         
         [self enter];
     }
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
