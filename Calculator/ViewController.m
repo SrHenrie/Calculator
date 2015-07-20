@@ -191,6 +191,8 @@
     buttonConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[button7][button4][button1][button0]|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:buttonsDictionary];
     [self.view addConstraints:buttonConstraints];
     
+    
+    //I use button7 the top most, left most button to constrain everthing else to, the starting position of all the buttons - the others will follow this because of out constraints above, and the height and width of the other buttons are equally constrained to button7
     constraint = [NSLayoutConstraint constraintWithItem:button7
                                               attribute:NSLayoutAttributeTop
                                               relatedBy:NSLayoutRelationEqual
