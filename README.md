@@ -81,17 +81,18 @@ The ```appendDigit:``` method should get rid of the leading zero, right?
 - if ```operandStack``` is greater than 2 (we need two number to perform an operation) then:
  - use ```popOperandStack``` to populate the two ```NSNumber``` variables
  - determine which button was pressed
-  - Use if-else if to "switch" (can't use a switch on strings :'( ) based on the operation to perform.
+ - Use if-else if to "switch" (can't use a switch on strings :'( ) based on the operation to perform.
+ 
   - inside each if set ```self.displayValue``` to the result of the appropriate math operation, i.e. (```[number2 doubleValue] / [number1 doubleValue]```)
   - NOTE: remember to convert our ```NSNumber```s to ```double```s
   - NOTE: Number2 should always be the first number used in the mathematical expression.
  - call ```enter``` to push new value from calculation on stack 
 
- ## Step 10: Don't require the use to hit enter before pressing an operand key
+## Step 10: Don't require the use to hit enter before pressing an operand key
 
- The user should be able to type: 5 enter 6 * to get 30, not necessarily type enter when done with each number, right?
+The user should be able to type: 5 enter 6 * to get 30, not necessarily type enter when done with each number, right?
 
- - we need to check if ```isInTheMiddleOfTypingANumber``` when an operand button is pressed, then we should call ```enter```.
+- we need to check if ```isInTheMiddleOfTypingANumber``` when an operand button is pressed, then we should call ```enter```.
 
 
 
