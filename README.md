@@ -1,6 +1,8 @@
 # Calculator
 A reverse polish notation calculator that demonstrates auto layout, stacks, target-actions on UIButtons
 
+NOTE: You should build and run after each step.
+
 ## Step 0: Setup Window (non-storyboard version)
 
 - In the ```application:didFinishLaunchingWithOptions:```
@@ -33,6 +35,21 @@ A reverse polish notation calculator that demonstrates auto layout, stacks, targ
 	- should resize nicely when device rotated
 
 ![Calculator Button Layout](http://i.imgur.com/qjSp5Bx.png)
+
+## Step 4: Create method for appending a digit and add target actions to each digit button
+
+- Create a method ```appendDigit:``` that takes a ```UIButton *``` as a parameter (the sender)
+- This method should determine which button was pressed and append the appropriate digit to the display label
+- add target-actions to each button
+
+## Step 5: Add BOOL to see if user is in the middle of typing a number
+
+The ```appendDigit:``` method should get rid of the leading zero, right?
+
+- add a BOOL property ```isInTheMiddleOfTypingANumber``` to ```ViewController```
+- if the user ```isInTheMiddleOfTypingANumber```, then just append the new number to ```displayLabel.text```
+- else (this is the first digit a user presses), then set the ```displayLabel.text``` to this number and set the ```isInTheMiddleOfTypingANumber``` to YES.
+
 
 
 

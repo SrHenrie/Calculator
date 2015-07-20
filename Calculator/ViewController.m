@@ -11,6 +11,7 @@
 @interface ViewController ()
 
 @property (strong, nonatomic) UILabel *displayLabel;
+@property (assign, nonatomic) BOOL isInTheMiddleOfTypingANumber;
 
 @end
 
@@ -68,60 +69,70 @@
     [button0 setTitle:@"0" forState:UIControlStateNormal];
     [button0 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button0 setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [button0 addTarget:self action:@selector(appendDigit:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button0];
     
     UIButton *button1 = [UIButton new];
     [button1 setTitle:@"1" forState:UIControlStateNormal];
     [button1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button1 setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [button1 addTarget:self action:@selector(appendDigit:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button1];
     
     UIButton *button2 = [UIButton new];
     [button2 setTitle:@"2" forState:UIControlStateNormal];
     [button2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button2 setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [button2 addTarget:self action:@selector(appendDigit:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button2];
     
     UIButton *button3 = [UIButton new];
     [button3 setTitle:@"3" forState:UIControlStateNormal];
     [button3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button3 setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [button3 addTarget:self action:@selector(appendDigit:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button3];
     
     UIButton *button4 = [UIButton new];
     [button4 setTitle:@"4" forState:UIControlStateNormal];
     [button4 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button4 setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [button4 addTarget:self action:@selector(appendDigit:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button4];
     
     UIButton *button5 = [UIButton new];
     [button5 setTitle:@"5" forState:UIControlStateNormal];
     [button5 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button5 setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [button5 addTarget:self action:@selector(appendDigit:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button5];
 
     UIButton *button6 = [UIButton new];
     [button6 setTitle:@"6" forState:UIControlStateNormal];
     [button6 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button6 setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [button6 addTarget:self action:@selector(appendDigit:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button6];
     
     UIButton *button7 = [UIButton new];
     [button7 setTitle:@"7" forState:UIControlStateNormal];
     [button7 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button7 setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [button7 addTarget:self action:@selector(appendDigit:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button7];
     
     UIButton *button8 = [UIButton new];
     [button8 setTitle:@"8" forState:UIControlStateNormal];
     [button8 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button8 setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [button8 addTarget:self action:@selector(appendDigit:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button8];
     
     UIButton *button9 = [UIButton new];
     [button9 setTitle:@"9" forState:UIControlStateNormal];
     [button9 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [button9 setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [button9 addTarget:self action:@selector(appendDigit:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button9];
     
     UIButton *buttonEnter = [UIButton new];
@@ -214,11 +225,19 @@
                                                                            multiplier:2.0
                                                                              constant:0.0];
     [self.view addConstraint:enterWidthConstraint];
-    
-    
-    
-    
+}
 
+- (void)appendDigit:(UIButton *)button {
+    NSString *digit = button.titleLabel.text;
+    
+    if (self.isInTheMiddleOfTypingANumber) {
+        self.displayLabel.text = [self.displayLabel.text stringByAppendingString:digit];
+    }
+    else {
+        self.displayLabel.text = digit;
+        self.isInTheMiddleOfTypingANumber = YES;
+    }
+    
 }
 
 
