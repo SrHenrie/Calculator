@@ -94,8 +94,11 @@ The user should be able to type: 5 enter 6 * to get 30, not necessarily type ent
 
 - we need to check if ```isInTheMiddleOfTypingANumber``` when an operand button is pressed, then we should call ```enter```.
 
+## Black Diamonds
 
-
-
-
-
+- make it so the user can't enter multiple zeros for a number
+- make it display the numbers better after a calculation
+- add a square root, sine, cosine, tanget buttons
+- add a display so the user can see previous commands entered
+- add a clear button to clear above history
+- add a backspace button to allow user to delete individual digits
