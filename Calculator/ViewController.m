@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) UILabel *displayLabel;
 @property (assign, nonatomic) BOOL isInTheMiddleOfTypingANumber;
+@property (assign, nonatomic) double displayValue;
+@property (strong, nonatomic) NSMutableArray *operandStack;
 
 @end
 
@@ -20,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.operandStack = [NSMutableArray new];
+    
     self.displayLabel = [UILabel new];
     self.displayLabel.textAlignment = NSTextAlignmentRight;
     self.displayLabel.font = [UIFont systemFontOfSize:32.0];
@@ -139,6 +143,7 @@
     [buttonEnter setTitle:@"Enter" forState:UIControlStateNormal];
     [buttonEnter setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [buttonEnter setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [buttonEnter addTarget:self action:@selector(enter) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttonEnter];
     
     UIButton *buttonDivide = [UIButton new];
@@ -240,6 +245,21 @@
     
 }
 
+- (double)displayValue {
+    return self.displayLabel.text.doubleValue;
+}
+
+- (void)setDisplayValue:(double)displayValue {
+    self.displayLabel.text = [NSString stringWithFormat:@"%f", displayValue];
+    self.isInTheMiddleOfTypingANumber = NO;
+}
+
+- (void)enter {
+    self.isInTheMiddleOfTypingANumber = NO;
+    NSNumber *number = [NSNumber numberWithDouble:self.displayValue];
+    [self.operandStack addObject:number];
+    NSLog(@"%@", self.operandStack);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

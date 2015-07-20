@@ -50,6 +50,27 @@ The ```appendDigit:``` method should get rid of the leading zero, right?
 - if the user ```isInTheMiddleOfTypingANumber```, then just append the new number to ```displayLabel.text```
 - else (this is the first digit a user presses), then set the ```displayLabel.text``` to this number and set the ```isInTheMiddleOfTypingANumber``` to YES.
 
+## Step 6: Create a displayValue property and implement a custom setter and getter
+
+- create a ```double``` property called ```displayValue```
+- implement a custom getter ```- (double)displayValue```
+	- this should return the ```displayLabel.text``` value as a double
+- implement a custom setter ```- (void)setDisplayValue:(double)displayValue```
+	- this should set the ```displayLabel.text``` to the ```displayValue`` parameter (converted to an NSString, of course)
+	- this should set ```isInTheMiddleOfTypingANumber``` to NO;
+
+
+## Step 7: Create an operand stack and implement the enter button
+
+- create an ```NSMutableArray *``` property on ```ViewController``` called ```operandStack```.
+- in ```viewDidLoad```, allocate memory and instantiate an empty ```NSMutableArray```
+- create a method ```enter``` that will be hooked up to a the enter button
+ - this method set ```isInTheMiddleOfTypingANumber``` to NO
+ - then this method should create an NSNumber representation of ```displayValue``` (this will pull the value in the ```displayLabel.text``` and convert it to a double)
+ - then store the NSNumber in ```operandStack```
+ - NSLog the operandStack;
+- Add a target-action to the button to link method with control event
+
 
 
 
