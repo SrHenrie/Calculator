@@ -32,7 +32,7 @@ A reverse polish notation calculator that demonstrates auto layout, stacks, targ
 	- buttons should take up rest of screen
 	- should resize nicely when device rotated
 
-![Calculator Button Layout](http://i.imgur.com/xC0mvx7.png)
+![Calculator Button Layout](http://i.imgur.com/qjSp5Bx.png)
 
 
 
